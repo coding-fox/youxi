@@ -15,7 +15,7 @@
     //执行上传文件操作的函数  
 	    $.ajaxFileUpload({  
 	        //处理文件上传操作的服务器端地址(可以传参数,已亲测可用)  
-	        url:'${pageContext.request.contextPath}/qnyh/collect/validData?uname=admins',  
+	        url:'${pageContext.request.contextPath}/qnyh/collect/validData?uname=admins&time='+new Date().getTime(),  
 	        secureuri:false,                           //是否启用安全提交,默认为false   
 	        fileElementId:'myBlogImage',               //文件选择框的id属性  
 	        dataType:'text',                           //服务器返回的格式,可以是json或xml等  

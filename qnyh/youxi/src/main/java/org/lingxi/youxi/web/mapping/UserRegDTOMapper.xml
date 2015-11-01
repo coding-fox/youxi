@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.lingxi.youxi.web.dao.UserRegDTOMapper" >
+  <resultMap id="BaseResultMap" type="org.lingxi.youxi.web.model.UserRegDTO" >
+    <id column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="nike_name" property="nikeName" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="mphone" property="mphone" jdbcType="VARCHAR" />
+    <result column="passwd" property="passwd" jdbcType="VARCHAR" />
+    <result column="gand_id" property="gandId" jdbcType="INTEGER" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="TINYINT" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, nike_name, email, mphone, passwd, gand_id, location, age, sex, member_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_reg
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from user_reg
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.lingxi.youxi.web.model.UserRegDTO" >
+    insert into user_reg (user_id, nike_name, email, 
+      mphone, passwd, gand_id, 
+      location, age, sex, 
+      member_id)
+    values (#{userId,jdbcType=VARCHAR}, #{nikeName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{mphone,jdbcType=VARCHAR}, #{passwd,jdbcType=VARCHAR}, #{gandId,jdbcType=INTEGER}, 
+      #{location,jdbcType=VARCHAR}, #{age,jdbcType=TINYINT}, #{sex,jdbcType=VARCHAR}, 
+      #{memberId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="org.lingxi.youxi.web.model.UserRegDTO" >
+    insert into user_reg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="nikeName != null" >
+        nike_name,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="mphone != null" >
+        mphone,
+      </if>
+      <if test="passwd != null" >
+        passwd,
+      </if>
+      <if test="gandId != null" >
+        gand_id,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="nikeName != null" >
+        #{nikeName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mphone != null" >
+        #{mphone,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null" >
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="gandId != null" >
+        #{gandId,jdbcType=INTEGER},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=TINYINT},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.lingxi.youxi.web.model.UserRegDTO" >
+    update user_reg
+    <set >
+      <if test="nikeName != null" >
+        nike_name = #{nikeName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mphone != null" >
+        mphone = #{mphone,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null" >
+        passwd = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="gandId != null" >
+        gand_id = #{gandId,jdbcType=INTEGER},
+      </if>
+      <if test="location != null" >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=TINYINT},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.lingxi.youxi.web.model.UserRegDTO" >
+    update user_reg
+    set nike_name = #{nikeName,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      mphone = #{mphone,jdbcType=VARCHAR},
+      passwd = #{passwd,jdbcType=VARCHAR},
+      gand_id = #{gandId,jdbcType=INTEGER},
+      location = #{location,jdbcType=VARCHAR},
+      age = #{age,jdbcType=TINYINT},
+      sex = #{sex,jdbcType=VARCHAR},
+      member_id = #{memberId,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>

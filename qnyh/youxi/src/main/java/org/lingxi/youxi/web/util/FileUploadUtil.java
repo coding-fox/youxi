@@ -4,14 +4,13 @@
 package org.lingxi.youxi.web.util;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import org.apache.commons.io.FileUtils;
+import org.lingxi.youxi.web.model.QnyhCollectArg;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -36,9 +35,10 @@ public class FileUploadUtil {
 		}*/
 		return null;
 	}
-	public static List<String> readString(MultipartFile[] myfiles){
-		List<String> result = new ArrayList<String>();
+	public static List<QnyhCollectArg> readString(MultipartFile[] myfiles){
+		List<QnyhCollectArg> result = new ArrayList<QnyhCollectArg>();
 		int actual=0;
+		QnyhCollectArg  arg ;
 		for (MultipartFile mfile : myfiles) {
 			try {
 				ByteArrayInputStream bis = new ByteArrayInputStream(mfile.getBytes());
@@ -46,7 +46,11 @@ public class FileUploadUtil {
 				char[] chars = new char[bis.available()];
 				actual = reader.read(chars);
 				reader.close();
-				result.add(String.valueOf(chars,0,actual));
+				
+				arg = new QnyhCollectArg();
+				arg.setName(mfile.getOriginalFilename());
+				arg.setContent(String.valueOf(chars,0,actual));
+				result.add(arg);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -57,7 +61,7 @@ public class FileUploadUtil {
 	/**
 	 * @param myfiles
 	 */
-	private static String check(MultipartFile[] myfiles) {
+	public static String check(MultipartFile[] myfiles) {
 		if (myfiles == null || myfiles.length == 0) {
 			return "没有选择任何文件";
 		}

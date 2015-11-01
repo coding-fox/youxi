@@ -5,6 +5,11 @@
         <param-name>contextConfigLocation</param-name>  
         <param-value>classpath:spring-context.xml</param-value>  
     </context-param> 
+    
+    <!-- Spring监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
     <!-- 添加spring3控制器及映射规则 -->  
     <servlet>  
         <servlet-name>SpringMVC</servlet-name>  

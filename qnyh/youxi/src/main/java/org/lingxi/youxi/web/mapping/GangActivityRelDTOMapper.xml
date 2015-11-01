@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.lingxi.youxi.web.dao.GangActivityRelDTOMapper" >
+  <resultMap id="BaseResultMap" type="org.lingxi.youxi.web.model.GangActivityRelDTO" >
+    <id column="gang_id" property="gangId" jdbcType="INTEGER" />
+    <id column="ywr_id" property="ywrId" jdbcType="VARCHAR" />
+    <result column="duration" property="duration" jdbcType="TINYINT" />
+    <result column="fight_count" property="fightCount" jdbcType="SMALLINT" />
+    <result column="dead_count" property="deadCount" jdbcType="SMALLINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gang_id, ywr_id, duration, fight_count, dead_count, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="org.lingxi.youxi.web.model.GangActivityRelDTOKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from gang_activity_rel
+    where gang_id = #{gangId,jdbcType=INTEGER}
+      and ywr_id = #{ywrId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="org.lingxi.youxi.web.model.GangActivityRelDTOKey" >
+    delete from gang_activity_rel
+    where gang_id = #{gangId,jdbcType=INTEGER}
+      and ywr_id = #{ywrId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.lingxi.youxi.web.model.GangActivityRelDTO" >
+    insert into gang_activity_rel (gang_id, ywr_id, duration, 
+      fight_count, dead_count, create_time
+      )
+    values (#{gangId,jdbcType=INTEGER}, #{ywrId,jdbcType=VARCHAR}, #{duration,jdbcType=TINYINT}, 
+      #{fightCount,jdbcType=SMALLINT}, #{deadCount,jdbcType=SMALLINT}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.lingxi.youxi.web.model.GangActivityRelDTO" >
+    insert into gang_activity_rel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gangId != null" >
+        gang_id,
+      </if>
+      <if test="ywrId != null" >
+        ywr_id,
+      </if>
+      <if test="duration != null" >
+        duration,
+      </if>
+      <if test="fightCount != null" >
+        fight_count,
+      </if>
+      <if test="deadCount != null" >
+        dead_count,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gangId != null" >
+        #{gangId,jdbcType=INTEGER},
+      </if>
+      <if test="ywrId != null" >
+        #{ywrId,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null" >
+        #{duration,jdbcType=TINYINT},
+      </if>
+      <if test="fightCount != null" >
+        #{fightCount,jdbcType=SMALLINT},
+      </if>
+      <if test="deadCount != null" >
+        #{deadCount,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.lingxi.youxi.web.model.GangActivityRelDTO" >
+    update gang_activity_rel
+    <set >
+      <if test="duration != null" >
+        duration = #{duration,jdbcType=TINYINT},
+      </if>
+      <if test="fightCount != null" >
+        fight_count = #{fightCount,jdbcType=SMALLINT},
+      </if>
+      <if test="deadCount != null" >
+        dead_count = #{deadCount,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where gang_id = #{gangId,jdbcType=INTEGER}
+      and ywr_id = #{ywrId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.lingxi.youxi.web.model.GangActivityRelDTO" >
+    update gang_activity_rel
+    set duration = #{duration,jdbcType=TINYINT},
+      fight_count = #{fightCount,jdbcType=SMALLINT},
+      dead_count = #{deadCount,jdbcType=SMALLINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where gang_id = #{gangId,jdbcType=INTEGER}
+      and ywr_id = #{ywrId,jdbcType=VARCHAR}
+  </update>
+</mapper>

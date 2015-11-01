@@ -3,8 +3,13 @@
  */
 package org.lingxi.youxi.collect.parser;
 
+import java.text.ParseException;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,6 +28,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TextParser {
 	private final static String BANGHUI_ST="的联赛统计信息:";
+	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
 
 	public List<String> fetchContent(String str){
 		
@@ -41,7 +47,7 @@ public class TextParser {
 			str = str.substring(0,currentIndex);
 		}
 		
-		//帮会名称
+		//帮会名称 
 		result.add(str.substring(0,str.indexOf(BANGHUI_ST)));
 		
 		return result;
@@ -55,6 +61,10 @@ public class TextParser {
 		return Arrays.asList("战车统计","治疗量","承受攻击量","输出量","辅助信息","综合信息");
 	}
 
+	public Date parseDate(String name,String str) throws ParseException{
+		
+		return sdf.parse(str,new ParsePosition(name.length()));
+	}
 	public Outline parseOutline(List<String> data){
 		
 		List<Tank> tank = parserTank(data.get(0));
@@ -145,7 +155,7 @@ public class TextParser {
 			item = new OutputAmount();
 			item.setName(matcher.group(1));
 			item.setProfession(matcher.group(2));
-			item.setAmount(Integer.parseInt(matcher.group(3)));
+			item.setAmount(Long.parseLong(matcher.group(3)));
 			result.add(item);
 		}
 		return result;

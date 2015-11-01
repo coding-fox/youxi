@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.lingxi.youxi.web.dao.ActivityDTOMapper" >
+  <resultMap id="BaseResultMap" type="org.lingxi.youxi.web.model.ActivityDTO" >
+    <id column="ywr_id" property="ywrId" jdbcType="VARCHAR" />
+    <id column="gang_id" property="gangId" jdbcType="INTEGER" />
+    <id column="obj_id" property="objId" jdbcType="INTEGER" />
+    <result column="kill_q" property="killQ" jdbcType="SMALLINT" />
+    <result column="assist_q" property="assistQ" jdbcType="SMALLINT" />
+    <result column="carry_q" property="carryQ" jdbcType="SMALLINT" />
+    <result column="output_m" property="outputM" jdbcType="BIGINT" />
+    <result column="cure_m" property="cureM" jdbcType="BIGINT" />
+    <result column="bear_m" property="bearM" jdbcType="BIGINT" />
+    <result column="corpse_q" property="corpseQ" jdbcType="SMALLINT" />
+    <result column="relive_q" property="reliveQ" jdbcType="SMALLINT" />
+    <result column="killed_q" property="killedQ" jdbcType="SMALLINT" />
+    <result column="tank_kill_q" property="tankKillQ" jdbcType="SMALLINT" />
+    <result column="hero" property="hero" jdbcType="VARCHAR" />
+    <result column="driver" property="driver" jdbcType="VARCHAR" />
+    <result column="gang_name" property="gangName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ywr_id, gang_id, obj_id, kill_q, assist_q, carry_q, output_m, cure_m, bear_m, corpse_q, 
+    relive_q, killed_q, tank_kill_q, hero, driver, gang_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="org.lingxi.youxi.web.model.ActivityDTOKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from activity_reg
+    where ywr_id = #{ywrId,jdbcType=VARCHAR}
+      and gang_id = #{gangId,jdbcType=INTEGER}
+      and obj_id = #{objId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="org.lingxi.youxi.web.model.ActivityDTOKey" >
+    delete from activity_reg
+    where ywr_id = #{ywrId,jdbcType=VARCHAR}
+      and gang_id = #{gangId,jdbcType=INTEGER}
+      and obj_id = #{objId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.lingxi.youxi.web.model.ActivityDTO" >
+    insert into activity_reg (ywr_id, gang_id, obj_id, 
+      kill_q, assist_q, carry_q, 
+      output_m, cure_m, bear_m, 
+      corpse_q, relive_q, killed_q, 
+      tank_kill_q, hero, driver, 
+      gang_name)
+    values (#{ywrId,jdbcType=VARCHAR}, #{gangId,jdbcType=INTEGER}, #{objId,jdbcType=INTEGER}, 
+      #{killQ,jdbcType=SMALLINT}, #{assistQ,jdbcType=SMALLINT}, #{carryQ,jdbcType=SMALLINT}, 
+      #{outputM,jdbcType=BIGINT}, #{cureM,jdbcType=BIGINT}, #{bearM,jdbcType=BIGINT}, 
+      #{corpseQ,jdbcType=SMALLINT}, #{reliveQ,jdbcType=SMALLINT}, #{killedQ,jdbcType=SMALLINT}, 
+      #{tankKillQ,jdbcType=SMALLINT}, #{hero,jdbcType=VARCHAR}, #{driver,jdbcType=VARCHAR}, 
+      #{gangName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.lingxi.youxi.web.model.ActivityDTO" >
+    insert into activity_reg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ywrId != null" >
+        ywr_id,
+      </if>
+      <if test="gangId != null" >
+        gang_id,
+      </if>
+      <if test="objId != null" >
+        obj_id,
+      </if>
+      <if test="killQ != null" >
+        kill_q,
+      </if>
+      <if test="assistQ != null" >
+        assist_q,
+      </if>
+      <if test="carryQ != null" >
+        carry_q,
+      </if>
+      <if test="outputM != null" >
+        output_m,
+      </if>
+      <if test="cureM != null" >
+        cure_m,
+      </if>
+      <if test="bearM != null" >
+        bear_m,
+      </if>
+      <if test="corpseQ != null" >
+        corpse_q,
+      </if>
+      <if test="reliveQ != null" >
+        relive_q,
+      </if>
+      <if test="killedQ != null" >
+        killed_q,
+      </if>
+      <if test="tankKillQ != null" >
+        tank_kill_q,
+      </if>
+      <if test="hero != null" >
+        hero,
+      </if>
+      <if test="driver != null" >
+        driver,
+      </if>
+      <if test="gangName != null" >
+        gang_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ywrId != null" >
+        #{ywrId,jdbcType=VARCHAR},
+      </if>
+      <if test="gangId != null" >
+        #{gangId,jdbcType=INTEGER},
+      </if>
+      <if test="objId != null" >
+        #{objId,jdbcType=INTEGER},
+      </if>
+      <if test="killQ != null" >
+        #{killQ,jdbcType=SMALLINT},
+      </if>
+      <if test="assistQ != null" >
+        #{assistQ,jdbcType=SMALLINT},
+      </if>
+      <if test="carryQ != null" >
+        #{carryQ,jdbcType=SMALLINT},
+      </if>
+      <if test="outputM != null" >
+        #{outputM,jdbcType=BIGINT},
+      </if>
+      <if test="cureM != null" >
+        #{cureM,jdbcType=BIGINT},
+      </if>
+      <if test="bearM != null" >
+        #{bearM,jdbcType=BIGINT},
+      </if>
+      <if test="corpseQ != null" >
+        #{corpseQ,jdbcType=SMALLINT},
+      </if>
+      <if test="reliveQ != null" >
+        #{reliveQ,jdbcType=SMALLINT},
+      </if>
+      <if test="killedQ != null" >
+        #{killedQ,jdbcType=SMALLINT},
+      </if>
+      <if test="tankKillQ != null" >
+        #{tankKillQ,jdbcType=SMALLINT},
+      </if>
+      <if test="hero != null" >
+        #{hero,jdbcType=VARCHAR},
+      </if>
+      <if test="driver != null" >
+        #{driver,jdbcType=VARCHAR},
+      </if>
+      <if test="gangName != null" >
+        #{gangName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.lingxi.youxi.web.model.ActivityDTO" >
+    update activity_reg
+    <set >
+      <if test="killQ != null" >
+        kill_q = #{killQ,jdbcType=SMALLINT},
+      </if>
+      <if test="assistQ != null" >
+        assist_q = #{assistQ,jdbcType=SMALLINT},
+      </if>
+      <if test="carryQ != null" >
+        carry_q = #{carryQ,jdbcType=SMALLINT},
+      </if>
+      <if test="outputM != null" >
+        output_m = #{outputM,jdbcType=BIGINT},
+      </if>
+      <if test="cureM != null" >
+        cure_m = #{cureM,jdbcType=BIGINT},
+      </if>
+      <if test="bearM != null" >
+        bear_m = #{bearM,jdbcType=BIGINT},
+      </if>
+      <if test="corpseQ != null" >
+        corpse_q = #{corpseQ,jdbcType=SMALLINT},
+      </if>
+      <if test="reliveQ != null" >
+        relive_q = #{reliveQ,jdbcType=SMALLINT},
+      </if>
+      <if test="killedQ != null" >
+        killed_q = #{killedQ,jdbcType=SMALLINT},
+      </if>
+      <if test="tankKillQ != null" >
+        tank_kill_q = #{tankKillQ,jdbcType=SMALLINT},
+      </if>
+      <if test="hero != null" >
+        hero = #{hero,jdbcType=VARCHAR},
+      </if>
+      <if test="driver != null" >
+        driver = #{driver,jdbcType=VARCHAR},
+      </if>
+      <if test="gangName != null" >
+        gang_name = #{gangName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ywr_id = #{ywrId,jdbcType=VARCHAR}
+      and gang_id = #{gangId,jdbcType=INTEGER}
+      and obj_id = #{objId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.lingxi.youxi.web.model.ActivityDTO" >
+    update activity_reg
+    set kill_q = #{killQ,jdbcType=SMALLINT},
+      assist_q = #{assistQ,jdbcType=SMALLINT},
+      carry_q = #{carryQ,jdbcType=SMALLINT},
+      output_m = #{outputM,jdbcType=BIGINT},
+      cure_m = #{cureM,jdbcType=BIGINT},
+      bear_m = #{bearM,jdbcType=BIGINT},
+      corpse_q = #{corpseQ,jdbcType=SMALLINT},
+      relive_q = #{reliveQ,jdbcType=SMALLINT},
+      killed_q = #{killedQ,jdbcType=SMALLINT},
+      tank_kill_q = #{tankKillQ,jdbcType=SMALLINT},
+      hero = #{hero,jdbcType=VARCHAR},
+      driver = #{driver,jdbcType=VARCHAR},
+      gang_name = #{gangName,jdbcType=VARCHAR}
+    where ywr_id = #{ywrId,jdbcType=VARCHAR}
+      and gang_id = #{gangId,jdbcType=INTEGER}
+      and obj_id = #{objId,jdbcType=INTEGER}
+  </update>
+</mapper>

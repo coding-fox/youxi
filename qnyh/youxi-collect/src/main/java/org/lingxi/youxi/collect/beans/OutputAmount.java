@@ -11,7 +11,7 @@ public class OutputAmount {
 	
 	private String name;//名称
 	private String profession;//职业
-	private Integer amount;//输出量
+	private Long amount;//输出量
 	/**
 	 * @return the name
 	 */
@@ -39,15 +39,16 @@ public class OutputAmount {
 	/**
 	 * @return the amount
 	 */
-	public Integer getAmount() {
+	public Long getAmount() {
 		return amount;
 	}
 	/**
 	 * @param amount the amount to set
 	 */
-	public void setAmount(Integer amount) {
+	public void setAmount(Long amount) {
 		this.amount = amount;
 	}
+	
 	
 	
 
